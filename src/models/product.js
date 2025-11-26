@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-const ProductSchema = new mongoose.Schema(
+const ProductSchema = new Schema(
   {
     slug: { type: String, required: true, unique: true },
     title: { type: String, required: true },
@@ -10,6 +10,7 @@ const ProductSchema = new mongoose.Schema(
     storeUrl: { type: String, required: true },
     category: { type: String },
     isActive: { type: Boolean, default: true },
+    isDeleted: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -19,9 +20,10 @@ const ProductSchema = new mongoose.Schema(
         ret.id = ret.slug;
         delete ret._id;
         delete ret.slug;
+        delete ret.isDeleted;
       },
     },
   },
 );
 
-export const ProductModel = mongoose.models.Product || mongoose.model('Product', ProductSchema);
+export const ProductModel = models.Product || model('Product', ProductSchema);
