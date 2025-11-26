@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-const PledgeItemSchema = new mongoose.Schema(
+const PledgeItemSchema = new Schema(
   {
     productSlug: { type: String, required: true },
     quantity: { type: Number, default: 1 },
@@ -12,7 +12,7 @@ const PledgeItemSchema = new mongoose.Schema(
   { _id: false },
 );
 
-const PledgeSchema = new mongoose.Schema(
+const PledgeSchema = new Schema(
   {
     donor: {
       name: { type: String, required: true },
@@ -21,6 +21,8 @@ const PledgeSchema = new mongoose.Schema(
     },
     items: { type: [PledgeItemSchema], required: true },
     status: { type: String, enum: ['pending', 'confirmed'], default: 'pending' },
+    isActive: { type: Boolean, default: true },
+    isDeleted: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -29,9 +31,10 @@ const PledgeSchema = new mongoose.Schema(
       transform: (doc, ret) => {
         ret.id = ret._id.toString();
         delete ret._id;
+        delete ret.isDeleted;
       },
     },
   },
 );
 
-export const PledgeModel = mongoose.models.Pledge || mongoose.model('Pledge', PledgeSchema);
+export const PledgeModel = models.Pledge || model('Pledge', PledgeSchema);
