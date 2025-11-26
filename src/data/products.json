@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fralda-pampers-recem-nascido",
+    "title": "Fralda Pampers RN+",
+    "description": "Pacote com 34 unidades para os primeiros dias do bebê.",
+    "price": 68.9,
+    "imageUrl": "https://images.example.com/pampers-rn.jpg",
+    "storeUrl": "https://loja.example.com/pampers-rn"
+  },
+  {
+    "id": "lenço-umedecido-huggies",
+    "title": "Lenços Umedecidos Huggies",
+    "description": "Kit com 4 pacotes de 48 unidades cada.",
+    "price": 42.5,
+    "imageUrl": "https://images.example.com/lencos-huggies.jpg",
+    "storeUrl": "https://loja.example.com/lencos-huggies"
+  },
+  {
+    "id": "banheira-ergonomica",
+    "title": "Banheira Ergonômica Dobrável",
+    "description": "Banheira compacta que cabe em qualquer espaço.",
+    "price": 249.9,
+    "imageUrl": "https://images.example.com/banheira.jpg",
+    "storeUrl": "https://loja.example.com/banheira"
+  }
+]
