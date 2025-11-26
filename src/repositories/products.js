@@ -1,5 +1,9 @@
-import products from '../data/products.json' assert { type: 'json' };
+import { readFileSync } from 'node:fs';
 import { ProductModel } from '../models/product.js';
+
+const productsSeed = JSON.parse(
+	readFileSync(new URL('../data/products.json', import.meta.url), 'utf-8'),
+);
 
 const mapProduct = (product) => {
 	if (!product) return null;
@@ -21,7 +25,7 @@ export const seedProductsIfNeeded = async () => {
 	const count = await ProductModel.estimatedDocumentCount();
 	if (count > 0) return;
 
-	const payload = products.map((product) => ({
+	const payload = productsSeed.map((product) => ({
 		slug: product.id,
 		title: product.title,
 		description: product.description,
