@@ -22,6 +22,17 @@ API em Node.js + Express responsável por gerenciar o catálogo de presentes, pl
    PIX_KEY=00000000-0000-0000-0000-000000000000
    PIX_RECIPIENT_NAME=Nome dos Pais
    PIX_DESCRIPTION=Doação Chá de Bebê
+   JWT_SECRET=troque-por-um-segredo-forte
+   JWT_EXPIRES_IN=1h
+   ADMIN_NAME=Administração
+   ADMIN_EMAIL=admin@example.com
+   ADMIN_PASSWORD=troque-essa-senha
+   STORAGE_DRIVER=s3
+   S3_BUCKET=nome-do-bucket
+   S3_REGION=us-east-1
+   S3_ACCESS_KEY_ID=chave
+   S3_SECRET_ACCESS_KEY=segredo
+   S3_PUBLIC_BASE_URL=https://nome-do-bucket.s3.amazonaws.com
    ```
 3. Instale as dependências:
    ```pwsh
@@ -40,6 +51,9 @@ API em Node.js + Express responsável por gerenciar o catálogo de presentes, pl
 | GET    | `/api/products` | Lista produtos ativos (seed automático a partir de `src/data/products.json`)
 | POST   | `/api/pledges`  | Cria um pledge (donor + itens) e devolve instruções Pix
 | POST   | `/api/donations`| Registra metadados de uma doação Pix vinculada a um pledge
+| GET    | `/api/babies`    | Lista perfis de bebês públicos (para o app)
+| GET    | `/api/babies/:slug` | Retorna detalhes + timeline pública de um bebê
+| POST   | `/api/admin/uploads`| (Admin) Recebe multipart `file` e envia para o storage configurado
 
 > Todas as respostas seguem o formato `{ data: ... }` e erros usam `{ errors: [...] }` conforme `express-validator`.
 
