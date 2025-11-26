@@ -1,13 +1,15 @@
-import mongoose from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-const DonationSchema = new mongoose.Schema(
+const DonationSchema = new Schema(
   {
     donor: {
       name: { type: String, required: true },
       phone: { type: String, required: true },
     },
-    pledgeId: { type: mongoose.Schema.Types.ObjectId, ref: 'Pledge', required: true },
+    pledgeId: { type: Schema.Types.ObjectId, ref: 'Pledge', required: true },
     pixProof: { type: String },
+    isActive: { type: Boolean, default: true },
+    isDeleted: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -16,9 +18,10 @@ const DonationSchema = new mongoose.Schema(
       transform: (doc, ret) => {
         ret.id = ret._id.toString();
         delete ret._id;
+        delete ret.isDeleted;
       },
     },
   },
 );
 
-export const DonationModel = mongoose.models.Donation || mongoose.model('Donation', DonationSchema);
+export const DonationModel = models.Donation || model('Donation', DonationSchema);
