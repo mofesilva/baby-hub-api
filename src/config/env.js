@@ -22,16 +22,6 @@ const config = {
       password: process.env.ADMIN_PASSWORD || 'changeme',
     },
   },
-  storage: {
-    driver: process.env.STORAGE_DRIVER || 's3',
-    s3: {
-      bucket: process.env.S3_BUCKET,
-      region: process.env.S3_REGION,
-      accessKeyId: process.env.S3_ACCESS_KEY_ID,
-      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-      publicBaseUrl: process.env.S3_PUBLIC_BASE_URL,
-    },
-  },
 };
 
 export default config;
